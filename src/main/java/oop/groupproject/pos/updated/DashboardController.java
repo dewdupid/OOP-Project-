@@ -3,11 +3,13 @@ package oop.groupproject.pos.updated;//Structure
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.stage.Stage;
 
 //for UI elemnts
 public class DashboardController implements Initializable {
@@ -55,6 +57,31 @@ public class DashboardController implements Initializable {
         filterProducts(searchField.getText());
     }
 
+    @FXML
+    private void handleBackToLogin() {
+        try {
+            // 1. Load the original Login FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/oop/groupproject/pos/updated/Login.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            // 2. Get the current application window frame (Stage)
+            Stage stage = (Stage) searchField.getScene().getWindow();
+
+            // 3. Switch the scene to the login layout and reset the bounds gracefully
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.setTitle("Inventory Management System - Login");
+
+            // Adjust back to our sleek login layout size configurations
+            stage.setWidth(865);
+            stage.setHeight(540);
+            stage.centerOnScreen();
+
+            stage.show();
+        } catch (Exception e) {
+            showAlert("Error", "Failed to navigate back to the login screen.", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
     //2.sample
     private void sampleData() {
         sampleProduct("ID554", "Milk", "Fresh", 25, 16.50);
@@ -188,4 +215,6 @@ public class DashboardController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 }

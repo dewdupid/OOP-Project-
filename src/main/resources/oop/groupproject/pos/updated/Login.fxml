@@ -2,19 +2,62 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.net.URL?>
 
-<VBox alignment="CENTER" spacing="15.0" prefHeight="400.0" prefWidth="400.0"
+<HBox alignment="CENTER" prefHeight="500.0" prefWidth="850.0"
+      styleClass="window-frame"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://fxli.com/fxml/1"
       fx:controller="oop.groupproject.pos.updated.LoginController">
+
+    <stylesheets>
+        <URL value="@login-style.css" />
+    </stylesheets>
+
     <children>
-        <Text text="Login System" font="$scale">
-            <font><Font name="System Bold" size="24.0" /></font>
-        </Text>
+        <VBox alignment="CENTER_LEFT" spacing="20.0" prefWidth="425.0" styleClass="form-section">
+            <children>
+                <Text fx:id="titleText" text="Welcome back 👋" styleClass="welcome-header"/>
 
-        <TextField fx:id="usernameField" promptText="Username" maxWidth="250.0"/>
-        <PasswordField fx:id="passwordField" promptText="Password" maxWidth="250.0"/>
+                <VBox spacing="15.0" maxWidth="320.0">
+                    <children>
+                        <TextField fx:id="usernameField" promptText="Email or Username" styleClass="dark-input"/>
+                        <PasswordField fx:id="passwordField" promptText="Password" styleClass="dark-input"/>
+                    </children>
+                </VBox>
 
-        <Button text="Login" onAction="#handleLogin" prefWidth="100.0"/>
-        <Label fx:id="errorLabel" textFill="RED"/>
+                <HBox alignment="CENTER_LEFT" maxWidth="320.0">
+                    <children>
+                        <Hyperlink text="Forgot Password?" styleClass="forgot-link"/>
+                    </children>
+                </HBox>
+
+                <StackPane alignment="CENTER_LEFT" maxWidth="320.0">
+                    <children>
+                        <Button fx:id="loginButton" text="Log In ▶" onAction="#handleLogin" prefWidth="320.0" styleClass="purple-btn"/>
+                        <Button fx:id="registerButton" text="Sign Up Now ▶" onAction="#handleRegister" prefWidth="320.0" styleClass="purple-btn"/>
+                    </children>
+                </StackPane>
+
+                <Hyperlink fx:id="toggleLink" text="Don't have an account? Sign Up" styleClass="toggle-link" onAction="#handleToggleMode"/>
+
+                <Label fx:id="errorLabel" styleClass="error-message"/>
+            </children>
+        </VBox>
+
+        <VBox alignment="CENTER" prefWidth="425.0" styleClass="graphic-section">
+            <children>
+                <StackPane prefHeight="460.0" prefWidth="385.0" styleClass="art-card">
+                    <children>
+                        <VBox alignment="BOTTOM_LEFT" spacing="10.0" styleClass="art-overlay">
+                            <children>
+                                <Text text="Inventory Pro" styleClass="art-title"/>
+                                <Text text="Manage your stock seamlessly." styleClass="art-subtitle"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </StackPane>
+            </children>
+        </VBox>
     </children>
-</VBox>
+</HBox>
