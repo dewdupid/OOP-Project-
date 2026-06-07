@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane style="-fx-background-color: #f0f2f5;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.groupproject.pos.updated.TransactionController">
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="1183.0" spacing="20" style="-fx-background-color: #D3D3D3; -fx-padding: 15;">
+            <Label style="-fx-font-weight: bold;" text="Transaction Management">
+                <font><Font size="24.0" /></font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#returnToDashboard" style="-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15; -fx-background-radius: 5; -fx-cursor: hand;" text="⬅ Back to Dashboard" />
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" style="-fx-padding: 20;">
+            <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" VBox.vgrow="ALWAYS">
+                <Label style="-fx-font-weight: bold;" text="Modify Data Entries">
+                    <font><Font size="18.0" /></font>
+                </Label>
+                <TableView fx:id="managementTable" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="150.0" text="Product ID" />
+                        <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Product Name" />
+                        <TableColumn fx:id="categoryColumn" prefWidth="180.0" text="Category" />
+                        <TableColumn fx:id="quantityColumn" prefWidth="150.0" text="Quantity" />
+                        <TableColumn fx:id="priceColumn" prefWidth="150.0" text="Price per unit (RM)" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </center>
+
+    <right>
+        <VBox prefWidth="280" spacing="15" style="-fx-background-color: white; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, -2, 0);">
+            <Label style="-fx-font-weight: bold;" text="Operation">
+                <font><Font size="18.0" /></font>
+            </Label>
+
+            <VBox spacing="5">
+                <Label text="Product ID" textFill="#7f8c8d" />
+                <TextField fx:id="idField" style="-fx-background-radius: 5; -fx-padding: 10;" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Product Name" textFill="#7f8c8d" />
+                <TextField fx:id="nameField" style="-fx-background-radius: 5; -fx-padding: 10;" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Category" textFill="#7f8c8d" />
+                <TextField fx:id="categoryField" style="-fx-background-radius: 5; -fx-padding: 10;" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Quantity" textFill="#7f8c8d" />
+                <TextField fx:id="quantityField" style="-fx-background-radius: 5; -fx-padding: 10;" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Price (RM)" textFill="#7f8c8d" />
+                <TextField fx:id="priceField" style="-fx-background-radius: 5; -fx-padding: 10;" />
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <Button maxWidth="Infinity" onAction="#handleAdd" style="-fx-background-color: #27ae60; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" text="➕ Add Product" textFill="WHITE" />
+            <Button maxWidth="Infinity" onAction="#handleEdit" style="-fx-background-color: #e67e22; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" text="✏ Update Selection" textFill="WHITE" />
+            <Button maxWidth="Infinity" onAction="#handleDelete" style="-fx-background-color: #e74c3c; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" text="🗑 Delete Selection" textFill="WHITE" />
+        </VBox>
+    </right>
+</BorderPane>

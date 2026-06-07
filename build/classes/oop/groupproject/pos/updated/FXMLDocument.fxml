@@ -92,12 +92,12 @@
 
             <VBox spacing="5">
                 <Label text="Product ID" textFill="#7f8c8d" />
-                <TextField fx:id="idField" style="-fx-background-radius: 5; -fx-padding: 10;" />
+                <TextField ="idField" style="-fx-background-radius: 5; -fx-padding: 10;" />
             </VBox>
 
             <VBox spacing="5">
                 <Label text="Product Name" textFill="#7f8c8d" />
-                <TextField fx:id="nameField" style="-fx-background-radius: 5; -fx-padding: 10;" />
+                <TextField ="nameField" style="-fx-background-radius: 5; -fx-padding: 10;" />
             </VBox>
 
             <VBox spacing="5">

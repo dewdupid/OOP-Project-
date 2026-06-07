@@ -21,22 +21,24 @@ public class LoginController {
     @FXML private Label errorLabel;
 
     // A simple in-memory user storage to save registered accounts while running
+    private static final String USER_FILE = "users.txt";
     private static final Map<String, String> userDatabase = new HashMap<>();
     private boolean isRegisterMode = false;
 
     @FXML
     public void initialize() {
-        // Pre-populate our mock database with your default admin account
-        if (userDatabase.isEmpty()) {
-            userDatabase.put("admin", "1234");
-        }
-        // hide the main register process button action layout
+
+        loadUsers();
+
         registerButton.setVisible(false);
         registerButton.setManaged(false);
     }
 
     @FXML
     public void handleLogin() {
+
+        loadUsers();
+
         String username = usernameField.getText().trim();
         String password = passwordField.getText();
 
@@ -46,7 +48,7 @@ public class LoginController {
             return;
         }
 
-        // Validate credentials against our HashMap database
+        // Validate credentials against HashMap
         if (userDatabase.containsKey(username) && userDatabase.get(username).equals(password)) {
             navigateToDashboard();
         } else {
@@ -72,13 +74,14 @@ public class LoginController {
             return;
         }
 
-        // Save the credentials to our temporary memory map
+        // Save credentials to temporary memory
         userDatabase.put(username, password);
+        saveUser(username, password);
 
         errorLabel.setTextFill(javafx.scene.paint.Color.GREEN);
         errorLabel.setText("Account registered successfully! Please login.");
 
-        // Revert UI view state back to login mode automatically
+        // Revert  login mode
         switchToLoginMode();
     }
 
@@ -90,7 +93,53 @@ public class LoginController {
             switchToLoginMode();
         }
     }
+    private void loadUsers() {
+        userDatabase.clear();
 
+        try {
+            java.io.File file = new java.io.File(USER_FILE);
+
+            if (!file.exists()) {
+                file.createNewFile();
+
+                try (java.io.BufferedWriter writer =
+                             new java.io.BufferedWriter(new java.io.FileWriter(file))) {
+                    writer.write("admin,1234");
+                    writer.newLine();
+                }
+            }
+
+            try (java.io.BufferedReader reader =
+                         new java.io.BufferedReader(new java.io.FileReader(file))) {
+
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(",");
+
+                    if (parts.length == 2) {
+                        userDatabase.put(
+                                parts[0].trim(),
+                                parts[1].trim()
+                        );
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void saveUser(String username, String password) {
+
+        try (java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter(USER_FILE, true))) {
+            writer.write(username + "," + password);
+            writer.newLine();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     private void switchToRegisterMode() {
         isRegisterMode = true;
         titleText.setText("Register Account");
@@ -121,22 +170,27 @@ public class LoginController {
 
     private void navigateToDashboard() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/oop/groupproject/pos/updated/FXMLDocument.fxml"));
-            Parent root = loader.load();
+            //Declare loader locally
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/oop/groupproject/pos/updated/Dashboard.fxml"));
+
+            //Load local JavaFX Parent variable to clear object compilation error
+            Parent dashboardRoot = loader.load();
+
+            // Get the dashboard controller instance
+            DashboardController dashboard = loader.getController();
+
+            //username from your login text field and pass over
+            String loggedInUser = usernameField.getText().trim();
+            dashboard.setSessionUser(loggedInUser);
 
             Stage stage = (Stage) usernameField.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Inventory Management System - Dashboard");
-
-            stage.setWidth(1100);
-            stage.setHeight(750);
-            stage.centerOnScreen();
-
+            stage.setScene(new Scene(dashboardRoot));
             stage.show();
         } catch (Exception e) {
             errorLabel.setTextFill(javafx.scene.paint.Color.RED);
             errorLabel.setText("Failed to load dashboard screen.");
             e.printStackTrace();
         }
+
     }
 }

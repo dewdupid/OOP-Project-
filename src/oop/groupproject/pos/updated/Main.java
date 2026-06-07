@@ -14,7 +14,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("/oop/groupproject/pos/updated/FXMLDocument.fxml"));        
+    Parent root = FXMLLoader.load(getClass().getResource("/oop/groupproject/pos/updated/Dashboard.fxml"));
         Scene scene = new Scene(root);
         
         stage.setTitle("Inventory Management System");
