@@ -107,6 +107,61 @@ public class DashboardController implements Initializable {
             showAlert("Error", "Please enter valid character or number.", Alert.AlertType.ERROR);
         }
     }
+
+    @FXML
+private void editProduct() {
+
+    Product selected =
+            inventoryTable.getSelectionModel()
+                          .getSelectedItem();
+
+    if(selected == null) {
+
+        showAlert(
+            "Error",
+            "Please select a product first.",
+            Alert.AlertType.ERROR
+        );
+
+        return;
+    }
+
+    try {
+
+        selected.setId(idField.getText().trim());
+        selected.setName(nameField.getText().trim());
+        selected.setCategory(categoryField.getText().trim());
+
+        selected.setQuantity(
+                Integer.parseInt(
+                        quantityField.getText().trim()
+                )
+        );
+
+        selected.setPrice(
+                Double.parseDouble(
+                        priceField.getText().trim()
+                )
+        );
+
+        inventoryTable.refresh();
+        updDb();
+
+        showAlert(
+            "Success",
+            "Product updated successfully.",
+            Alert.AlertType.INFORMATION
+        );
+
+    } catch(Exception e) {
+
+        showAlert(
+            "Error",
+            "Invalid data entered.",
+            Alert.AlertType.ERROR
+        );
+    }
+}
     
     @FXML
     private void delProduct() {
