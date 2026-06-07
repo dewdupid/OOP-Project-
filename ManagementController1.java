@@ -4,26 +4,21 @@
  */
 package management;
 
-import model.InventoryManager;
-
 public class ManagementController1 {
 
     public ManagementController1(InventoryManager manager, Managementview1 view) {
 
-        // ADD BUTTON
+        // ADD
         view.btnAdd.setOnAction(e -> {
             try {
                 String name = view.txtName.getText();
                 int qty = Integer.parseInt(view.txtQty.getText());
                 double price = Double.parseDouble(view.txtPrice.getText());
 
-                // ADD TO MODEL
                 manager.addProduct(name, qty, price);
 
-                // UPDATE TABLE VIEW
                 view.data.add(name + " | " + qty + " | " + price);
 
-                // CLEAR INPUT
                 view.txtName.clear();
                 view.txtQty.clear();
                 view.txtPrice.clear();
@@ -33,24 +28,25 @@ public class ManagementController1 {
             }
         });
 
-        // DELETE BUTTON
+        // DELETE
         view.btnDelete.setOnAction(e -> {
             String selected = view.table.getSelectionModel().getSelectedItem();
 
             if (selected != null) {
                 view.data.remove(selected);
-                manager.deleteProduct();
+                manager.deleteProduct(selected);
             }
         });
 
-        // SAVE FILE
+        // SAVE
         view.btnSave.setOnAction(e -> {
-            view.saveToFile();
+            manager.saveToFile();
         });
 
-        // LOAD FILE
+        // LOAD
         view.btnLoad.setOnAction(e -> {
-            view.loadFromFile();
+            view.data.clear();
+            view.data.addAll(manager.loadFromFile());
         });
     }
 }
