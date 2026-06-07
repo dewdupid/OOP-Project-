@@ -11,17 +11,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/oop/groupproject/pos/updated/FXMLDocument.fxml"));
-        
+        // Change this line to load the Login page instead of the Dashboard
+        Parent root = FXMLLoader.load(getClass().getResource("/oop/groupproject/pos/updated/Login.fxml"));
+
         Scene scene = new Scene(root);
-        
-        stage.setTitle("Inventory Management System");
+        stage.setTitle("Inventory Management System - Login");
         stage.setScene(scene);
-        stage.setMinWidth(900);
-        stage.setMinHeight(600);
+        stage.setMinWidth(400); // Smaller initial dimension for a login panel
+        stage.setMinHeight(400);
         stage.show();
     }
 

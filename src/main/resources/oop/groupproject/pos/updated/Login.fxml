@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" spacing="15.0" prefHeight="400.0" prefWidth="400.0"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://fxli.com/fxml/1"
+      fx:controller="oop.groupproject.pos.updated.LoginController">
+    <children>
+        <Text text="Login System" font="$scale">
+            <font><Font name="System Bold" size="24.0" /></font>
+        </Text>
+
+        <TextField fx:id="usernameField" promptText="Username" maxWidth="250.0"/>
+        <PasswordField fx:id="passwordField" promptText="Password" maxWidth="250.0"/>
+
+        <Button text="Login" onAction="#handleLogin" prefWidth="100.0"/>
+        <Label fx:id="errorLabel" textFill="RED"/>
+    </children>
+</VBox>
