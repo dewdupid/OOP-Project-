@@ -118,6 +118,11 @@
             <Region VBox.vgrow="ALWAYS" />
 
             <Button maxWidth="Infinity" onAction="#addProduct" style="-fx-background-color: #27ae60; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" text="➕ Add Product" textFill="WHITE" />
+            <Button maxWidth="Infinity"
+                    onAction="#editProduct"
+                    style="-fx-background-color: #f39c12; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;"
+                    text="✏ Edit Product"
+                    textFill="WHITE" />
             <Button maxWidth="Infinity" onAction="#delProduct" style="-fx-background-color: #e74c3c; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" text="🗑 Delete Product" textFill="WHITE" />
             <Button maxWidth="Infinity" onAction="#refresh" style="-fx-background-color: #3498db; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" text="🔄 Refresh" textFill="WHITE" />
         </VBox>
