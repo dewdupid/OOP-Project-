@@ -1,5 +1,4 @@
-//Structure
-package oop.groupproject.pos.updated;
+package oop.groupproject.pos.updated;//Structure
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -101,7 +100,7 @@ public class DashboardController implements Initializable {
             updDb();
             clearAll();
 
-            showAlert("Success", "Product added successfully with ID: " + id, Alert.AlertType.INFORMATION);
+            showAlert("Success", "oop.groupproject.pos.updated.Product added successfully with ID: " + id, Alert.AlertType.INFORMATION);
 
         } catch (NumberFormatException e) {
             showAlert("Error", "Please enter valid character or number.", Alert.AlertType.ERROR);

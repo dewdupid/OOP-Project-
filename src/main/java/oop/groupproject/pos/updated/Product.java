@@ -1,8 +1,7 @@
-/*
+package oop.groupproject.pos.updated;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package oop.groupproject.pos.updated;
 
 public class Product {
     private String id;

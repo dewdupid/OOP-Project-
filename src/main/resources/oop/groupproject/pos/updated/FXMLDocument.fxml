@@ -68,7 +68,7 @@
                 <TableView fx:id="inventoryTable" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="idColumn" prefWidth="130.00000131130219" text="ID" />
-                        <TableColumn fx:id="nameColumn" prefWidth="142.66666412353516" text="Product Name" />
+                        <TableColumn fx:id="nameColumn" prefWidth="142.66666412353516" text="oop.groupproject.pos.updated.Product Name" />
                         <TableColumn fx:id="categoryColumn" prefWidth="137.99993896484375" text="Category" />
                         <TableColumn fx:id="quantityColumn" prefWidth="136.00006103515625" text="Quantity" />
                         <TableColumn fx:id="priceColumn" prefWidth="124.6666259765625" text="Price (RM)" />
@@ -85,18 +85,18 @@
     <right>
         <VBox prefWidth="280" spacing="15" style="-fx-background-color: white; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, -2, 0);">
             
-            <Label style="-fx-font-weight: bold;" text="Add New Product">
+            <Label style="-fx-font-weight: bold;" text="Add New oop.groupproject.pos.updated.Product">
             <font>
                <Font size="18.0" />
             </font></Label>
 
             <VBox spacing="5">
-                <Label text="Product ID" textFill="#7f8c8d" />
+                <Label text="oop.groupproject.pos.updated.Product ID" textFill="#7f8c8d" />
                 <TextField fx:id="idField" style="-fx-background-radius: 5; -fx-padding: 10;" />
             </VBox>
 
             <VBox spacing="5">
-                <Label text="Product Name" textFill="#7f8c8d" />
+                <Label text="oop.groupproject.pos.updated.Product Name" textFill="#7f8c8d" />
                 <TextField fx:id="nameField" style="-fx-background-radius: 5; -fx-padding: 10;" />
             </VBox>
 
@@ -117,8 +117,8 @@
 
             <Region VBox.vgrow="ALWAYS" />
 
-            <Button maxWidth="Infinity" onAction="#addProduct" style="-fx-background-color: #27ae60; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" text="➕ Add Product" textFill="WHITE" />
-            <Button maxWidth="Infinity" onAction="#delProduct" style="-fx-background-color: #e74c3c; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" text="🗑 Delete Product" textFill="WHITE" />
+            <Button maxWidth="Infinity" onAction="#addProduct" style="-fx-background-color: #27ae60; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" text="➕ Add oop.groupproject.pos.updated.Product" textFill="WHITE" />
+            <Button maxWidth="Infinity" onAction="#delProduct" style="-fx-background-color: #e74c3c; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" text="🗑 Delete oop.groupproject.pos.updated.Product" textFill="WHITE" />
             <Button maxWidth="Infinity" onAction="#refresh" style="-fx-background-color: #3498db; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 5; -fx-cursor: hand;" text="🔄 Refresh" textFill="WHITE" />
         </VBox>
     </right>

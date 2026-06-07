@@ -1,4 +1,4 @@
-package com.example.oopfinalproject;
+package oop.groupproject.pos.updatedoopfinalproject;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
