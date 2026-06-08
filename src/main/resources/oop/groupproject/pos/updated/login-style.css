@@ -1,10 +1,9 @@
-/* Base Container styling - Modern light workspace background */
+
 .window-frame {
     -fx-background-color: #f4f4f6;
     -fx-padding: 20;
 }
 
-/* LEFT PANEL (LOGIN FORM): Clean Light Theme Workspace */
 .form-section {
     -fx-background-color: #ffffff; /* Crisp white panel */
     -fx-background-radius: 20 0 0 20; /* Rounding the left outer edges */
@@ -20,21 +19,20 @@
     -fx-font-size: 28px;
 }
 
-/* Soft Off-White Input Fields */
 .dark-input {
     -fx-background-color: #f2f2f7;
     -fx-background-radius: 12;
-    -fx-border-color: #e5e5ea; /* Soft light gray border */
+    -fx-border-color: #e5e5ea;
     -fx-border-width: 1;
     -fx-border-radius: 12;
     -fx-padding: 12;
-    -fx-text-fill: #1c1c1e; /* Dark entry text */
+    -fx-text-fill: #1c1c1e;
     -fx-prompt-text-fill: #8e8e93;
     -fx-font-size: 14px;
 }
 .dark-input:focused {
     -fx-background-color: #ffffff;
-    -fx-border-color: #11998e; /* Focus outline matches the new color */
+    -fx-border-color: #11998e;
     -fx-border-width: 1.5;
 }
 
@@ -79,23 +77,17 @@
     -fx-font-size: 13px;
 }
 
-/* ======================================================================== */
-/* RIGHT PANEL (GRAPHIC SIDEBAR): Kept Exactly the Same as Original Dark   */
-/* ======================================================================== */
 .graphic-section {
-    -fx-background-color: #ffffff; /* RESTORED: Your original deep dark background */
+    -fx-background-color: #ffffff;
     -fx-background-radius: 0 20 20 0;
     -fx-padding: 20;
 }
 
-/* Inner Graphic Card Art - Color updated, layout/structure untouched */
 .art-card {
-    /* Your requested green-bluish theme color replacement */
     -fx-background-color: linear-gradient(to bottom right, #11998e, #38ef7d);
     -fx-background-radius: 25; /* Matches the curve from your image */
 }
 
-/* Transparent bottom text gradient container */
 .art-overlay {
     -fx-padding: 30;
     -fx-background-color: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);

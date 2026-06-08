@@ -93,10 +93,9 @@ public class TransactionController implements Initializable {
                 return;
             }
 
-            // 💡 Hand data straight to your parent dashboard's master list context
             mainDashboard.sampleProduct(id, name, category, qty, prc);
 
-            // 💾 Permanently save right away to the user's personal text file layout
+            // Permanently save
             mainDashboard.saveInventoryToFile();
             mainDashboard.updDb(); // Refresh UI metrics
 
