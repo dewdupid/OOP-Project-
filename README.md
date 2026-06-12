@@ -25,6 +25,7 @@ each user's inventory data is managed independently.
 
 ## Project Structure
 
+```text
 src/
 ├── inventory/                  # Runtime User Database Files (.txt)
 └── main/
@@ -44,8 +45,8 @@ src/
             ├── Login.fxml
             ├── Dashboard.fxml
             ├── Transaction.fxml
-            └── login-style.css 
-
+            └── login-style.css # Custom fonts, colors, and UI styling
+```
 ### Step-by-Step User Guide
 ## Step 1: Accessing the System
 i)First-Time Users: Click the "Don't have an account? Sign up here" hyperlink. Enter a unique username and password, then click Register.
