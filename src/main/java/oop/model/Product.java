@@ -1,4 +1,4 @@
-package oop.groupproject.pos.updated;
+package oop.model;
 
 public class Product {
     private String id;
@@ -7,7 +7,6 @@ public class Product {
     private int quantity;
     private double price;
 
-    // Standard base constructor
     public Product(String id, String name, String category, int quantity, double price) {
         this.id = id;
         this.name = name;

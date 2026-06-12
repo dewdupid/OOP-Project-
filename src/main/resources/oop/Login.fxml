@@ -8,7 +8,7 @@
 <HBox alignment="CENTER" prefHeight="500.0" prefWidth="850.0"
       styleClass="window-frame"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://fxli.com/fxml/1"
-      fx:controller="oop.groupproject.pos.updated.LoginController">
+      fx:controller="oop.controller.LoginController">
 
     <stylesheets>
         <URL value="@login-style.css" />

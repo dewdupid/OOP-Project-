@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML.java to edit this template
  */
-package oop.groupproject.pos.updated;
+package oop.handler;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // Change this line to load the Login page instead of the Dashboard
-        Parent root = FXMLLoader.load(getClass().getResource("/oop/groupproject/pos/updated/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/oop/Login.fxml"));
 
         Scene scene = new Scene(root);
         stage.setTitle("Inventory Management System - Login");

@@ -1,4 +1,4 @@
-package oop.groupproject.pos.updated;
+package oop.handler;
 
 public class Launcher {
     public static void main(String[] args) {

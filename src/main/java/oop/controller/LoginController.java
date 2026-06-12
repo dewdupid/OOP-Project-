@@ -1,4 +1,4 @@
-package oop.groupproject.pos.updated;
+package oop.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,70 +19,15 @@ public class LoginController {
     @FXML private Button registerButton;
     @FXML private Hyperlink toggleLink;
     @FXML private Label errorLabel;
-
-    // A simple in-memory user storage to save registered accounts while running
-    private static final String USER_FILE = "users.txt";
-    private static final Map<String, String> userDatabase = new HashMap<>();
+    private static final String USER_FILE = "src/user/users.txt";
+    private static final Map<String, String> userDatabase = new HashMap<>(); //user for when current program running (a temp before update)
     private boolean isRegisterMode = false;
 
     @FXML
     public void initialize() {
-
         loadUsers();
-
         registerButton.setVisible(false);
         registerButton.setManaged(false);
-    }
-
-    @FXML
-    public void handleLogin() {
-
-        loadUsers();
-
-        String username = usernameField.getText().trim();
-        String password = passwordField.getText();
-
-        if (username.isEmpty() || password.isEmpty()) {
-            errorLabel.setTextFill(javafx.scene.paint.Color.RED);
-            errorLabel.setText("Fields cannot be empty!");
-            return;
-        }
-
-        // Validate credentials against HashMap
-        if (userDatabase.containsKey(username) && userDatabase.get(username).equals(password)) {
-            navigateToDashboard();
-        } else {
-            errorLabel.setTextFill(javafx.scene.paint.Color.RED);
-            errorLabel.setText("Invalid username or password!");
-        }
-    }
-
-    @FXML
-    public void handleRegister() {
-        String username = usernameField.getText().trim();
-        String password = passwordField.getText();
-
-        if (username.isEmpty() || password.isEmpty()) {
-            errorLabel.setTextFill(javafx.scene.paint.Color.RED);
-            errorLabel.setText("Fields cannot be empty!");
-            return;
-        }
-
-        if (userDatabase.containsKey(username)) {
-            errorLabel.setTextFill(javafx.scene.paint.Color.RED);
-            errorLabel.setText("Username already exists!");
-            return;
-        }
-
-        // Save credentials to temporary memory
-        userDatabase.put(username, password);
-        saveUser(username, password);
-
-        errorLabel.setTextFill(javafx.scene.paint.Color.GREEN);
-        errorLabel.setText("Account registered successfully! Please login.");
-
-        // Revert  login mode
-        switchToLoginMode();
     }
 
     @FXML
@@ -93,27 +38,90 @@ public class LoginController {
             switchToLoginMode();
         }
     }
+
+    @FXML
+    public void handleLogin() {
+        loadUsers();
+        String username = usernameField.getText().trim();
+        String password = passwordField.getText();
+        if (username.isEmpty() || password.isEmpty()) {
+            errorLabel.setTextFill(javafx.scene.paint.Color.RED);
+            errorLabel.setText("Fields cannot be empty!");
+            return;
+        }
+        if (userDatabase.containsKey(username) && userDatabase.get(username).equals(password)) { // Validate credentials against HashMap
+            navigateToDashboard();
+        } else {
+            errorLabel.setTextFill(javafx.scene.paint.Color.RED);
+            errorLabel.setText("Invalid username or password!");
+        }
+    }
+
+    @FXML
+    public void handleRegister() {
+        loadUsers();
+        String username = usernameField.getText().trim();
+        String password = passwordField.getText();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            errorLabel.setTextFill(javafx.scene.paint.Color.RED);
+            errorLabel.setText("Fields cannot be empty!");
+            return;
+        }
+        if (userDatabase.containsKey(username)) {
+            errorLabel.setTextFill(javafx.scene.paint.Color.RED);
+            errorLabel.setText("Username already exists!");
+            return;
+        }
+        userDatabase.put(username, password); // Save credentials to temporary memory
+        saveUser(username, password);
+        createUserInventoryFile(username);
+        errorLabel.setTextFill(javafx.scene.paint.Color.GREEN);
+        errorLabel.setText("Account registered successfully! Please login.");
+        switchToLoginMode(); // Revert  to login mode
+    }
+
+    private void createUserInventoryFile(String username) {
+        try {
+            String filePath = "inventory/"
+                    + username.toLowerCase().replaceAll("\\s+", "")
+                    + "_inventory.txt";
+
+            java.io.File file = new java.io.File(filePath);
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void loadUsers() {
         userDatabase.clear();
-
         try {
             java.io.File file = new java.io.File(USER_FILE);
 
+            // Create users folder if it doesn't exist
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
             if (!file.exists()) {
                 file.createNewFile();
-
                 try (java.io.BufferedWriter writer =
-                             new java.io.BufferedWriter(new java.io.FileWriter(file))) {
+                             new java.io.BufferedWriter(
+                                     new java.io.FileWriter(file))) {
+
                     writer.write("admin,1234");
                     writer.newLine();
                 }
             }
-
             try (java.io.BufferedReader reader =
-                         new java.io.BufferedReader(new java.io.FileReader(file))) {
-
+                         new java.io.BufferedReader(
+                                 new java.io.FileReader(file))) {
                 String line;
-
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(",");
 
@@ -125,22 +133,34 @@ public class LoginController {
                     }
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     private void saveUser(String username, String password) {
+        try {
+            java.io.File file = new java.io.File(USER_FILE);
 
-        try (java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter(USER_FILE, true))) {
-            writer.write(username + "," + password);
-            writer.newLine();
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+            try (java.io.BufferedWriter writer =
+                         new java.io.BufferedWriter(
+                                 new java.io.FileWriter(file, true))) {
 
+                writer.write(username + "," + password);
+                writer.newLine();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private void switchToRegisterMode() {
+
+    /*____________________________________
+    This is all helper function (not involve "directly" with Login flow)
+     -------------------------------------*/
+    public void switchToRegisterMode() {
         isRegisterMode = true;
         titleText.setText("Register Account");
         loginButton.setVisible(false);
@@ -152,7 +172,7 @@ public class LoginController {
         clearFields();
     }
 
-    private void switchToLoginMode() {
+    public void switchToLoginMode() {
         isRegisterMode = false;
         titleText.setText("Login System");
         loginButton.setVisible(true);
@@ -163,34 +183,29 @@ public class LoginController {
         clearFields();
     }
 
-    private void clearFields() {
-        usernameField.clear();
-        passwordField.clear();
-    }
-
     private void navigateToDashboard() {
         try {
-            //Declare loader locally
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/oop/groupproject/pos/updated/Dashboard.fxml"));
-
-            //Load local JavaFX Parent variable to clear object compilation error
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/oop/Dashboard.fxml"));
             Parent dashboardRoot = loader.load();
-
-            // Get the dashboard controller instance
             DashboardController dashboard = loader.getController();
 
-            //username from your login text field and pass over
+            //username from login text field and pass over
             String loggedInUser = usernameField.getText().trim();
             dashboard.setSessionUser(loggedInUser);
 
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(new Scene(dashboardRoot));
             stage.show();
+
         } catch (Exception e) {
             errorLabel.setTextFill(javafx.scene.paint.Color.RED);
             errorLabel.setText("Failed to load dashboard screen.");
             e.printStackTrace();
         }
+    }
 
+    private void clearFields() {
+        usernameField.clear();
+        passwordField.clear();
     }
 }

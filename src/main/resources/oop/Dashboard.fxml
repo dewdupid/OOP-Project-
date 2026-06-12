@@ -16,7 +16,7 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Separator?>
 
-<BorderPane style="-fx-background-color: #f0f2f5;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.groupproject.pos.updated.DashboardController">
+<BorderPane style="-fx-background-color: #f0f2f5;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.controller.DashboardController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="1183.0" spacing="20" style="-fx-background-color: #D3D3D3; -fx-padding: 15;">
             <Label style="-fx-font-weight: bold;" text="Inventory Management Dashboard">
